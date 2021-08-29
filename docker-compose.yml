@@ -1,0 +1,43 @@
+version: "3"
+services:
+  app:
+    container_name: notification-service
+    restart: always
+    build:
+      context: ./
+      args:
+        port: "3000"
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    links:
+      - mongo
+    networks:
+      - rabbitmq_nodejs
+    environment:
+      NODE_ENV: production
+      AMQP_URL: amqp://guest:guest@rabbitmq:5672
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - rabbitmq_nodejs
+  rabbitmq:
+    image: rabbitmq:3.8-management-alpine
+    container_name: 'rabbitmq'
+    ports:
+        - 5673:5672
+        - 15673:15672
+    volumes:
+        - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+        - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+    networks:
+        - rabbitmq_nodejs
+networks:
+  rabbitmq_nodejs:
+    driver: bridge
+

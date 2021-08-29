@@ -1,0 +1,32 @@
+{
+  "name": "notifications",
+  "version": "1.0.0",
+  "description": "notifications",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --timeout 10000",
+    "start": "nodemon -L server.js"
+  },
+  "keywords": [
+    "node",
+    "restful",
+    "api"
+  ],
+  "author": "Saif",
+  "license": "ISC",
+  "dependencies": {
+    "amqplib": "^0.8.0",
+    "body-parser": "^1.19.0",
+    "express": "^4.16.4",
+    "firebase": "^5.11.0",
+    "firebase-admin": "^7.3.0",
+    "mongoose": "^5.5.5",
+    "morgan": "^1.9.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.11",
+    "chai": "^3.5.0",
+    "chai-http": "^2.0.1",
+    "mocha": "^2.4.5"
+  }
+}
